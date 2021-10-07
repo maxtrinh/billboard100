@@ -44,7 +44,20 @@ df <- df %>%
                                 "Didn't hit #1")) %>% 
     ungroup()
 
-
+# Charts of 2000
+df %>% 
+    ggplot(aes(x = week, y = rank, group = track,
+               color = `Peak Rank`)) +
+    geom_line(aes(size = `Peak Rank`), alpha = 0.4) +
+    scale_y_reverse() +
+    scale_x_log10(breaks = seq(0, 70, 10)) +
+    theme_classic() +
+    labs(x = 'Week', y = 'Rank') +
+    scale_size_manual(values = c(0.25, 1)) +
+    scale_color_manual(values = c('black', 'red')) +
+    theme(legend.position = c(0.9, 0.25),
+          legend.background = element_rect(fill = 'transparent'))
+    
 
 
 
