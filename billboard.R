@@ -4,3 +4,14 @@ library(tidyverse)
 billboard <- read_csv('https://clanfear.github.io/CSSS508/Lectures/Week5/data/billboard.csv')
 
 str(billboard[,65:ncol(billboard)])
+
+# Manually column types as an option
+bb_types <- paste(c('icccD', rep('i', 76)), collapse = '')
+billboard <- read_csv('https://clanfear.github.io/CSSS508/Lectures/Week5/data/billboard.csv', col_types = bb_types)
+
+str(billboard)
+
+
+
+
+
