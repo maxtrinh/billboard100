@@ -9,7 +9,12 @@ str(billboard[,65:ncol(billboard)])
 bb_types <- paste(c('icccD', rep('i', 76)), collapse = '')
 billboard <- read_csv('https://clanfear.github.io/CSSS508/Lectures/Week5/data/billboard.csv', col_types = bb_types)
 
-str(billboard)
+#alternate solution
+
+billboard <- read_csv('https://clanfear.github.io/CSSS508/Lectures/Week5/data/billboard.csv', guess_max = 5000)
+
+
+
 
 
 
