@@ -28,8 +28,13 @@ summary(df$week)
 df <- df %>% 
     mutate(week = parse_number(week))
 
-# now week column is numberic instead of character
-
+# Separate time into length
+df <- df %>% 
+    separate(time, into = c("minute", "second"), sep = ":",
+             convert = T) %>% 
+    mutate(length = minute + second / 60) %>% 
+    select(-minute, -second)
+    
 
 
 
