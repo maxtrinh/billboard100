@@ -39,10 +39,11 @@ df <- df %>%
 df <- df %>% 
     group_by(artist, track) %>% 
     mutate('Weeks at #1' = sum(rank == 1),
-           'Peak Rank' = ifelse(rank == 1,
+           'Peak Rank' = ifelse(any(rank == 1),
                                 'Hit #1',
                                 "Didn't hit #1")) %>% 
     ungroup()
+
 
 
 
