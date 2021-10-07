@@ -35,6 +35,24 @@ df <- df %>%
     mutate(length = minute + second / 60) %>% 
     select(-minute, -second)
     
+# Charts of 2000: Data Prep
+df <- df %>% 
+    group_by(artist, track) %>% 
+    mutate('Weeks at #1' = sum(rank == 1),
+           'Peak Rank' = ifelse(rank == 1,
+                                'Hit #1',
+                                "Didn't hit #1")) %>% 
+    ungroup()
+
+
+
+
+
+
+
+
+
+
 
 
 
