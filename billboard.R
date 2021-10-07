@@ -21,6 +21,15 @@ df <- billboard %>%
                  values_drop_na = T)
 
 dim(df)
+summary(df$rank)
+summary(df$week)
+
+# Parse number of week column into number only
+df <- df %>% 
+    mutate(week = parse_number(week))
+
+# now week column is numberic instead of character
+
 
 
 
