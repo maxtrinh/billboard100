@@ -177,8 +177,13 @@ jayz_good_legend <-
     theme(legend.position = c(0.8, 0.25),
           legend.background = element_rect(fill = 'transparent'))
 
+jayz_biggest <- jayz %>% 
+    filter(track %in% c("I Just Wanna Love U ...", "Big Pimpin'"))
 
+levels(jayz_biggest$track)
 
+jayz_biggest <- jayz_biggest %>% 
+    droplevels()
 
 
 
