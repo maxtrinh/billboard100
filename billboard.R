@@ -90,11 +90,25 @@ plot_by_date <-
 
 plot_by_date
 
+# Seattle police data
+spd <- read_csv("https://raw.githubusercontent.com/clanfear/CSSS508/master/Seattle_Police_Department_911_Incident_Response.csv")
 
+glimpse(spd)
+str(spd$`Event Clearance Date`)
 
+library(lubridate)
+spd <- spd %>% 
+    mutate(`Event Clearance Date` = 
+               mdy_hms(`Event Clearance Date`,
+                       tz = 'America/Los_Angeles')) 
 
+str(spd$`Event Clearance Date`)
 
-
+demo_dts <- spd$`Event Clearance Date`[1:2]
+demo_dts
+(date_only <- as.Date(demo_dts))
+(day_of_week_only <- weekdays(demo_dts))
+(one_hour_later <- demo_dts + dhours(1))
 
 
 
