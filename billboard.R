@@ -110,6 +110,24 @@ demo_dts
 (day_of_week_only <- weekdays(demo_dts))
 (one_hour_later <- demo_dts + dhours(1))
 
+spd_times <- spd %>% 
+    select(`Initial Type Group`, `Event Clearance Date`) %>% 
+    mutate(hour = hour(`Event Clearance Date`))
+
+spd_times %>% 
+    ggplot(aes(x = hour)) +
+    geom_histogram(binwidth = 2) +
+    facet_wrap(~ `Initial Type Group`) +
+    theme_minimal() +
+    theme(strip.text.x = element_text(size = rel(0.6))) +
+    labs(y = 'Count of Incidence', x = 'Hour of Day')
+
+
+
+
+
+
+
 
 
 
