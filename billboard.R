@@ -122,6 +122,48 @@ spd_times %>%
     theme(strip.text.x = element_text(size = rel(0.6))) +
     labs(y = 'Count of Incidence', x = 'Hour of Day')
 
+# Managing Factor Variables
+# Using forcats that is part of the tidyverse package
+str(spd$`Initial Type Group`)
+
+spd_times <- spd_times %>% 
+    mutate(`Initial Type Group` = factor(`Initial Type Group`))
+
+head(spd_times$`Initial Type Group`)
+
+head(as.numeric(spd_times$`Initial Type Group`))
+
+# Releveing by Frequency
+spd_times <- spd_times %>% 
+    mutate(`Initial Type Group` = 
+               fct_infreq(`Initial Type Group`))
+
+head(levels(spd_times$`Initial Type Group`))
+
+spd_times %>% 
+    ggplot(aes(x = hour)) +
+    geom_histogram(binwidth = 2) +
+    facet_wrap(~ `Initial Type Group`) +
+    theme_minimal() +
+    theme(strip.text.x = element_text(size = rel(0.6))) +
+    labs(y = 'Count of Incidence', x = 'Hour of Day')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
