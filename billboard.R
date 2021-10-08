@@ -148,6 +148,37 @@ spd_times %>%
     theme(strip.text.x = element_text(size = rel(0.6))) +
     labs(y = 'Count of Incidence', x = 'Hour of Day')
 
+# Jay-Z Reorder example
+jayz <- df %>% 
+    filter(artist == 'Jay-Z') %>% 
+    mutate(track = factor(track))
+
+jayz_bad_legend <- 
+    ggplot(data = jayz, aes(x = week, y = rank,
+                            group = track, color = track)) +
+    geom_line() +
+    theme_bw() +
+    scale_y_reverse(limits = c(100,0)) +
+    theme(legend.position = c(0.8, 0.25),
+          legend.background = element_rect(fill = 'transparent'))
+
+jayz_bad_legend
+
+jayz <- jayz %>% 
+    filter(artist == 'Jay-Z') %>% 
+    mutate(track = fct_reorder(track, rank, min))
+
+jayz_good_legend <- 
+    ggplot(data = jayz, aes(x = week, y = rank,
+                            group = track, color = track)) +
+    geom_line() +
+    theme_bw() +
+    scale_y_reverse(limits = c(100,0)) +
+    theme(legend.position = c(0.8, 0.25),
+          legend.background = element_rect(fill = 'transparent'))
+
+
+
 
 
 
