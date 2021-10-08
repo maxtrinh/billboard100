@@ -57,7 +57,58 @@ df %>%
     scale_color_manual(values = c('black', 'red')) +
     theme(legend.position = c(0.9, 0.25),
           legend.background = element_rect(fill = 'transparent'))
+
+ggsave('Chart2000b.png')
+
+# Which were #1 the most?
+df %>% 
+    distinct(artist, track, `Weeks at #1`) %>% 
+    arrange(desc(`Weeks at #1`)) %>% 
+    head(7)
+
+# Getting Usable Dates
+df <- df %>% 
+    mutate(date = date.entered + (week - 1) * 7)
+
+df %>% 
+    arrange(artist, track, week) %>% 
+    select(artist, date.entered, week, date, rank) %>% 
+    head(5)
+
+plot_by_date <- 
+    ggplot(df, aes(x = date, y = rank,
+                   group = track)) +
+    geom_line(size = 0.25, alpha = 0.4) +
+    scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+    scale_y_reverse() +
+    theme_bw() +
+    geom_vline(xintercept = as.numeric(as.Date("2000-01-01", "%Y-%m-%d")),
+               col = 'red') +
+    geom_vline(xintercept = as.numeric(as.Date("2001-01-01", "%Y-%m-%d")),
+               col = 'red') +
+    labs(x = 'Month', y = 'Rank')
+
+plot_by_date
+
+
+
+
+
+
+
+
+
+
+
+
     
+
+
+
+
+
+    
+
 
 
 
